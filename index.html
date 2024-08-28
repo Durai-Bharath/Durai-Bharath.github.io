@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+ <script type="application/javascript" src="/assets/packages/flutter_inappwebview_web/assets/web/web_support.js"
+  defer></script>
+
+ <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+ <base href="/">
+
+ <meta charset="UTF-8">
+ <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+ <meta name="description" content="A new Flutter project.">
+
+ <!-- iOS meta tags & icons -->
+ <meta name="apple-mobile-web-app-capable" content="yes">
+ <meta name="apple-mobile-web-app-status-bar-style" content="black">
+ <meta name="apple-mobile-web-app-title" content="tara">
+ <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+ <!-- Favicon -->
+ <link rel="icon" type="image/png" href="favicon.png" />
+
+ <title>Tara - Annuity Risk</title>
+ <link rel="manifest" href="manifest.json">
+
+
+ <style>
+  /* Full-screen overlay */
+  #splash-screen {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+
+  /* SVG logo styles */
+  #logo {
+    margin-bottom: 20px; /* Space between logo and progress bar */
+  }
+
+  /* Progress bar container */
+  .progress-container {
+    width: 80%;
+    max-width: 200px;
+    height: 10px;
+    background: rgba(0, 0, 0, 0.1); /* Background color of the progress container */
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Moving progress indicator */
+  .moving-progress {
+    position: absolute;
+    top: 0;
+    left: 0; /* Start at the left edge */
+    height: 100%;
+    width: 100px; /* Fixed width */
+    background: linear-gradient(to right, #1669E9, #0C3B83);
+    animation: move 4s ease-in-out infinite; /* Adjust timing for speed */
+  }
+
+  @keyframes move {
+    0% {
+      transform: translateX(-50px); /* Move off-screen to the left */
+    }
+    50% {
+      transform: translateX(150%); /* Move to right edge */
+    }
+    100% {
+      transform: translateX(-50px); /* Move back to the left */
+    }
+  }
+</style>
+
+
+ <script>
+  // The value below is injected by flutter build, do not touch.
+  const serviceWorkerVersion = "223979604";
+ </script>
+
+ <!-- This script adds the flutter initialization JS code -->
+ <script src="flutter.js" defer></script>
+</head>
+
+<body>
+
+ <!-- Splash screen HTML -->
+ <div id="splash-screen">
+  <!-- SVG logo -->
+  <div id="logo">
+   <img width="100" height="100" src="/assets/assets/SVG/splash_logo.svg">
+   <!-- Example SVG content; replace with your actual logo -->
+   <!-- <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="white" /> -->
+   </img>
+  </div>
+
+  <!-- Progress bar container -->
+  <div class="progress-container">
+   <div class="moving-progress"></div>
+  </div>
+ </div>
+
+ <script>
+  window.addEventListener('load', function (ev) {
+
+
+   // Download main.dart.js
+   _flutter.loader.loadEntrypoint({
+    serviceWorker: {
+     serviceWorkerVersion: serviceWorkerVersion,
+    },
+
+    onEntrypointLoaded: function (engineInitializer) {
+     engineInitializer.initializeEngine().then(function (appRunner) {
+      appRunner.runApp();
+
+      // Hide splash screen once the app is initialized
+      var splashScreen = document.getElementById('splash-screen');
+      if (splashScreen) {
+       splashScreen.style.display = 'none';
+      }
+     });
+    }
+   });
+  });
+ </script>
+</body>
+
+</html>
